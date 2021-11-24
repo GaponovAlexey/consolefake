@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { Footer } from './components/Footer'
+import { Main } from './Main'
+
+const Global = createGlobalStyle`
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: consolas;
+}
+.head {
+  color: blue;
+  background-color: #757575;
+}
+`
+
+const theme = {
+  colors: {
+    primary: 'blue',
+    secondary: 'red',
+  },
+  media: {
+    phone: '(max-width: 425px',
+    table: '(max-width: 768px) and (min-width: 425px)',
+  }
 }
 
-export default App;
+
+
+export default function App() {
+  return (
+    <div>
+      <ThemeProvider theme={theme} >
+        <Global />
+        <div>
+          <Main />
+        </div>
+        <Footer />
+      </ThemeProvider>
+    </div>
+  )
+}
